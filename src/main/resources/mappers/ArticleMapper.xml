@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codebbs.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.codebbs.pojo.Article">
+    <constructor>
+      <idArg column="a_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_sid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="a_summary" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="a_click_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_reply_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="a_flag" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_kid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="a_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    a_id, a_sid, a_uid, a_title, a_summary, a_click_count, a_reply_count, a_content, 
+    a_flag, a_kid, a_create_time, a_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from article
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.codebbs.pojo.Article">
+    insert into article (a_id, a_sid, a_uid, 
+      a_title, a_summary, a_click_count, 
+      a_reply_count, a_content, a_flag, 
+      a_kid, a_create_time, a_update_time
+      )
+    values (#{aId,jdbcType=INTEGER}, #{aSid,jdbcType=INTEGER}, #{aUid,jdbcType=INTEGER}, 
+      #{aTitle,jdbcType=VARCHAR}, #{aSummary,jdbcType=VARCHAR}, #{aClickCount,jdbcType=INTEGER}, 
+      #{aReplyCount,jdbcType=INTEGER}, #{aContent,jdbcType=VARCHAR}, #{aFlag,jdbcType=INTEGER}, 
+      #{aKid,jdbcType=INTEGER}, #{aCreateTime,jdbcType=TIMESTAMP}, #{aUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.codebbs.pojo.Article">
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="aSid != null">
+        a_sid,
+      </if>
+      <if test="aUid != null">
+        a_uid,
+      </if>
+      <if test="aTitle != null">
+        a_title,
+      </if>
+      <if test="aSummary != null">
+        a_summary,
+      </if>
+      <if test="aClickCount != null">
+        a_click_count,
+      </if>
+      <if test="aReplyCount != null">
+        a_reply_count,
+      </if>
+      <if test="aContent != null">
+        a_content,
+      </if>
+      <if test="aFlag != null">
+        a_flag,
+      </if>
+      <if test="aKid != null">
+        a_kid,
+      </if>
+      <if test="aCreateTime != null">
+        a_create_time,
+      </if>
+      <if test="aUpdateTime != null">
+        a_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aSid != null">
+        #{aSid,jdbcType=INTEGER},
+      </if>
+      <if test="aUid != null">
+        #{aUid,jdbcType=INTEGER},
+      </if>
+      <if test="aTitle != null">
+        #{aTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aSummary != null">
+        #{aSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="aClickCount != null">
+        #{aClickCount,jdbcType=INTEGER},
+      </if>
+      <if test="aReplyCount != null">
+        #{aReplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="aContent != null">
+        #{aContent,jdbcType=VARCHAR},
+      </if>
+      <if test="aFlag != null">
+        #{aFlag,jdbcType=INTEGER},
+      </if>
+      <if test="aKid != null">
+        #{aKid,jdbcType=INTEGER},
+      </if>
+      <if test="aCreateTime != null">
+        #{aCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aUpdateTime != null">
+        #{aUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.codebbs.pojo.Article">
+    update article
+    <set>
+      <if test="aSid != null">
+        a_sid = #{aSid,jdbcType=INTEGER},
+      </if>
+      <if test="aUid != null">
+        a_uid = #{aUid,jdbcType=INTEGER},
+      </if>
+      <if test="aTitle != null">
+        a_title = #{aTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aSummary != null">
+        a_summary = #{aSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="aClickCount != null">
+        a_click_count = #{aClickCount,jdbcType=INTEGER},
+      </if>
+      <if test="aReplyCount != null">
+        a_reply_count = #{aReplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="aContent != null">
+        a_content = #{aContent,jdbcType=VARCHAR},
+      </if>
+      <if test="aFlag != null">
+        a_flag = #{aFlag,jdbcType=INTEGER},
+      </if>
+      <if test="aKid != null">
+        a_kid = #{aKid,jdbcType=INTEGER},
+      </if>
+      <if test="aCreateTime != null">
+        a_create_time = #{aCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aUpdateTime != null">
+        a_update_time = #{aUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.codebbs.pojo.Article">
+    update article
+    set a_sid = #{aSid,jdbcType=INTEGER},
+      a_uid = #{aUid,jdbcType=INTEGER},
+      a_title = #{aTitle,jdbcType=VARCHAR},
+      a_summary = #{aSummary,jdbcType=VARCHAR},
+      a_click_count = #{aClickCount,jdbcType=INTEGER},
+      a_reply_count = #{aReplyCount,jdbcType=INTEGER},
+      a_content = #{aContent,jdbcType=VARCHAR},
+      a_flag = #{aFlag,jdbcType=INTEGER},
+      a_kid = #{aKid,jdbcType=INTEGER},
+      a_create_time = #{aCreateTime,jdbcType=TIMESTAMP},
+      a_update_time = #{aUpdateTime,jdbcType=TIMESTAMP}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.codebbs.pojo.Article">
+    <constructor>
+      <idArg column="a_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_sid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_uid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="a_summary" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="a_click_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_reply_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="a_flag" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_kid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="a_create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="a_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    a_id, a_sid, a_uid, a_title, a_summary, a_click_count, a_reply_count, a_content, 
+    a_flag, a_kid, a_create_time, a_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from article
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.codebbs.pojo.Article">
+    insert into article (a_id, a_sid, a_uid, 
+      a_title, a_summary, a_click_count, 
+      a_reply_count, a_content, a_flag, 
+      a_kid, a_create_time, a_update_time
+      )
+    values (#{aId,jdbcType=INTEGER}, #{aSid,jdbcType=INTEGER}, #{aUid,jdbcType=INTEGER}, 
+      #{aTitle,jdbcType=VARCHAR}, #{aSummary,jdbcType=VARCHAR}, #{aClickCount,jdbcType=INTEGER}, 
+      #{aReplyCount,jdbcType=INTEGER}, #{aContent,jdbcType=VARCHAR}, #{aFlag,jdbcType=INTEGER}, 
+      #{aKid,jdbcType=INTEGER}, #{aCreateTime,jdbcType=TIMESTAMP}, #{aUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.codebbs.pojo.Article">
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="aSid != null">
+        a_sid,
+      </if>
+      <if test="aUid != null">
+        a_uid,
+      </if>
+      <if test="aTitle != null">
+        a_title,
+      </if>
+      <if test="aSummary != null">
+        a_summary,
+      </if>
+      <if test="aClickCount != null">
+        a_click_count,
+      </if>
+      <if test="aReplyCount != null">
+        a_reply_count,
+      </if>
+      <if test="aContent != null">
+        a_content,
+      </if>
+      <if test="aFlag != null">
+        a_flag,
+      </if>
+      <if test="aKid != null">
+        a_kid,
+      </if>
+      <if test="aCreateTime != null">
+        a_create_time,
+      </if>
+      <if test="aUpdateTime != null">
+        a_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aSid != null">
+        #{aSid,jdbcType=INTEGER},
+      </if>
+      <if test="aUid != null">
+        #{aUid,jdbcType=INTEGER},
+      </if>
+      <if test="aTitle != null">
+        #{aTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aSummary != null">
+        #{aSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="aClickCount != null">
+        #{aClickCount,jdbcType=INTEGER},
+      </if>
+      <if test="aReplyCount != null">
+        #{aReplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="aContent != null">
+        #{aContent,jdbcType=VARCHAR},
+      </if>
+      <if test="aFlag != null">
+        #{aFlag,jdbcType=INTEGER},
+      </if>
+      <if test="aKid != null">
+        #{aKid,jdbcType=INTEGER},
+      </if>
+      <if test="aCreateTime != null">
+        #{aCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aUpdateTime != null">
+        #{aUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.codebbs.pojo.Article">
+    update article
+    <set>
+      <if test="aSid != null">
+        a_sid = #{aSid,jdbcType=INTEGER},
+      </if>
+      <if test="aUid != null">
+        a_uid = #{aUid,jdbcType=INTEGER},
+      </if>
+      <if test="aTitle != null">
+        a_title = #{aTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aSummary != null">
+        a_summary = #{aSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="aClickCount != null">
+        a_click_count = #{aClickCount,jdbcType=INTEGER},
+      </if>
+      <if test="aReplyCount != null">
+        a_reply_count = #{aReplyCount,jdbcType=INTEGER},
+      </if>
+      <if test="aContent != null">
+        a_content = #{aContent,jdbcType=VARCHAR},
+      </if>
+      <if test="aFlag != null">
+        a_flag = #{aFlag,jdbcType=INTEGER},
+      </if>
+      <if test="aKid != null">
+        a_kid = #{aKid,jdbcType=INTEGER},
+      </if>
+      <if test="aCreateTime != null">
+        a_create_time = #{aCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aUpdateTime != null">
+        a_update_time = #{aUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.codebbs.pojo.Article">
+    update article
+    set a_sid = #{aSid,jdbcType=INTEGER},
+      a_uid = #{aUid,jdbcType=INTEGER},
+      a_title = #{aTitle,jdbcType=VARCHAR},
+      a_summary = #{aSummary,jdbcType=VARCHAR},
+      a_click_count = #{aClickCount,jdbcType=INTEGER},
+      a_reply_count = #{aReplyCount,jdbcType=INTEGER},
+      a_content = #{aContent,jdbcType=VARCHAR},
+      a_flag = #{aFlag,jdbcType=INTEGER},
+      a_kid = #{aKid,jdbcType=INTEGER},
+      a_create_time = #{aCreateTime,jdbcType=TIMESTAMP},
+      a_update_time = #{aUpdateTime,jdbcType=TIMESTAMP}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+</mapper>

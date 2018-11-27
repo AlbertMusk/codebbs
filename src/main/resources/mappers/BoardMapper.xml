@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codebbs.dao.BoardMapper">
+  <resultMap id="BaseResultMap" type="com.codebbs.pojo.Board">
+    <constructor>
+      <idArg column="b_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="b_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="b_modertor_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="b_profile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="b_statement" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="b_topic_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="b_click_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="b_creat_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="b_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    b_id, b_name, b_modertor_id, b_profile, b_statement, b_topic_count, b_click_count, 
+    b_creat_time, b_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from board
+    where b_id = #{bId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from board
+    where b_id = #{bId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.codebbs.pojo.Board">
+    insert into board (b_id, b_name, b_modertor_id, 
+      b_profile, b_statement, b_topic_count, 
+      b_click_count, b_creat_time, b_update_time
+      )
+    values (#{bId,jdbcType=INTEGER}, #{bName,jdbcType=VARCHAR}, #{bModertorId,jdbcType=VARCHAR}, 
+      #{bProfile,jdbcType=VARCHAR}, #{bStatement,jdbcType=VARCHAR}, #{bTopicCount,jdbcType=INTEGER}, 
+      #{bClickCount,jdbcType=INTEGER}, #{bCreatTime,jdbcType=TIMESTAMP}, #{bUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.codebbs.pojo.Board">
+    insert into board
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bId != null">
+        b_id,
+      </if>
+      <if test="bName != null">
+        b_name,
+      </if>
+      <if test="bModertorId != null">
+        b_modertor_id,
+      </if>
+      <if test="bProfile != null">
+        b_profile,
+      </if>
+      <if test="bStatement != null">
+        b_statement,
+      </if>
+      <if test="bTopicCount != null">
+        b_topic_count,
+      </if>
+      <if test="bClickCount != null">
+        b_click_count,
+      </if>
+      <if test="bCreatTime != null">
+        b_creat_time,
+      </if>
+      <if test="bUpdateTime != null">
+        b_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bId != null">
+        #{bId,jdbcType=INTEGER},
+      </if>
+      <if test="bName != null">
+        #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bModertorId != null">
+        #{bModertorId,jdbcType=VARCHAR},
+      </if>
+      <if test="bProfile != null">
+        #{bProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="bStatement != null">
+        #{bStatement,jdbcType=VARCHAR},
+      </if>
+      <if test="bTopicCount != null">
+        #{bTopicCount,jdbcType=INTEGER},
+      </if>
+      <if test="bClickCount != null">
+        #{bClickCount,jdbcType=INTEGER},
+      </if>
+      <if test="bCreatTime != null">
+        #{bCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bUpdateTime != null">
+        #{bUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.codebbs.pojo.Board">
+    update board
+    <set>
+      <if test="bName != null">
+        b_name = #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bModertorId != null">
+        b_modertor_id = #{bModertorId,jdbcType=VARCHAR},
+      </if>
+      <if test="bProfile != null">
+        b_profile = #{bProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="bStatement != null">
+        b_statement = #{bStatement,jdbcType=VARCHAR},
+      </if>
+      <if test="bTopicCount != null">
+        b_topic_count = #{bTopicCount,jdbcType=INTEGER},
+      </if>
+      <if test="bClickCount != null">
+        b_click_count = #{bClickCount,jdbcType=INTEGER},
+      </if>
+      <if test="bCreatTime != null">
+        b_creat_time = #{bCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bUpdateTime != null">
+        b_update_time = #{bUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.codebbs.pojo.Board">
+    update board
+    set b_name = #{bName,jdbcType=VARCHAR},
+      b_modertor_id = #{bModertorId,jdbcType=VARCHAR},
+      b_profile = #{bProfile,jdbcType=VARCHAR},
+      b_statement = #{bStatement,jdbcType=VARCHAR},
+      b_topic_count = #{bTopicCount,jdbcType=INTEGER},
+      b_click_count = #{bClickCount,jdbcType=INTEGER},
+      b_creat_time = #{bCreatTime,jdbcType=TIMESTAMP},
+      b_update_time = #{bUpdateTime,jdbcType=TIMESTAMP}
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.codebbs.pojo.Board">
+    <constructor>
+      <idArg column="b_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="b_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="b_modertor_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="b_profile" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="b_statement" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="b_topic_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="b_click_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="b_creat_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="b_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    b_id, b_name, b_modertor_id, b_profile, b_statement, b_topic_count, b_click_count, 
+    b_creat_time, b_update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from board
+    where b_id = #{bId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from board
+    where b_id = #{bId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.codebbs.pojo.Board">
+    insert into board (b_id, b_name, b_modertor_id, 
+      b_profile, b_statement, b_topic_count, 
+      b_click_count, b_creat_time, b_update_time
+      )
+    values (#{bId,jdbcType=INTEGER}, #{bName,jdbcType=VARCHAR}, #{bModertorId,jdbcType=VARCHAR}, 
+      #{bProfile,jdbcType=VARCHAR}, #{bStatement,jdbcType=VARCHAR}, #{bTopicCount,jdbcType=INTEGER}, 
+      #{bClickCount,jdbcType=INTEGER}, #{bCreatTime,jdbcType=TIMESTAMP}, #{bUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.codebbs.pojo.Board">
+    insert into board
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bId != null">
+        b_id,
+      </if>
+      <if test="bName != null">
+        b_name,
+      </if>
+      <if test="bModertorId != null">
+        b_modertor_id,
+      </if>
+      <if test="bProfile != null">
+        b_profile,
+      </if>
+      <if test="bStatement != null">
+        b_statement,
+      </if>
+      <if test="bTopicCount != null">
+        b_topic_count,
+      </if>
+      <if test="bClickCount != null">
+        b_click_count,
+      </if>
+      <if test="bCreatTime != null">
+        b_creat_time,
+      </if>
+      <if test="bUpdateTime != null">
+        b_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bId != null">
+        #{bId,jdbcType=INTEGER},
+      </if>
+      <if test="bName != null">
+        #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bModertorId != null">
+        #{bModertorId,jdbcType=VARCHAR},
+      </if>
+      <if test="bProfile != null">
+        #{bProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="bStatement != null">
+        #{bStatement,jdbcType=VARCHAR},
+      </if>
+      <if test="bTopicCount != null">
+        #{bTopicCount,jdbcType=INTEGER},
+      </if>
+      <if test="bClickCount != null">
+        #{bClickCount,jdbcType=INTEGER},
+      </if>
+      <if test="bCreatTime != null">
+        #{bCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bUpdateTime != null">
+        #{bUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.codebbs.pojo.Board">
+    update board
+    <set>
+      <if test="bName != null">
+        b_name = #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bModertorId != null">
+        b_modertor_id = #{bModertorId,jdbcType=VARCHAR},
+      </if>
+      <if test="bProfile != null">
+        b_profile = #{bProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="bStatement != null">
+        b_statement = #{bStatement,jdbcType=VARCHAR},
+      </if>
+      <if test="bTopicCount != null">
+        b_topic_count = #{bTopicCount,jdbcType=INTEGER},
+      </if>
+      <if test="bClickCount != null">
+        b_click_count = #{bClickCount,jdbcType=INTEGER},
+      </if>
+      <if test="bCreatTime != null">
+        b_creat_time = #{bCreatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bUpdateTime != null">
+        b_update_time = #{bUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.codebbs.pojo.Board">
+    update board
+    set b_name = #{bName,jdbcType=VARCHAR},
+      b_modertor_id = #{bModertorId,jdbcType=VARCHAR},
+      b_profile = #{bProfile,jdbcType=VARCHAR},
+      b_statement = #{bStatement,jdbcType=VARCHAR},
+      b_topic_count = #{bTopicCount,jdbcType=INTEGER},
+      b_click_count = #{bClickCount,jdbcType=INTEGER},
+      b_creat_time = #{bCreatTime,jdbcType=TIMESTAMP},
+      b_update_time = #{bUpdateTime,jdbcType=TIMESTAMP}
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+</mapper>

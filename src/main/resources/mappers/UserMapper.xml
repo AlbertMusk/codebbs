@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codebbs.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.codebbs.pojo.User">
+    <constructor>
+      <idArg column="u_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="u_username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_sex" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="u_head" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_satement" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="u_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="u_point" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="u_is_moderator" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    u_id, u_username, u_name, u_password, u_email, u_sex, u_head, u_satement, u_create_time, 
+    u_update_time, u_point, u_is_moderator
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.codebbs.pojo.User">
+    insert into user (u_id, u_username, u_name, 
+      u_password, u_email, u_sex, 
+      u_head, u_satement, u_create_time, 
+      u_update_time, u_point, u_is_moderator
+      )
+    values (#{uId,jdbcType=INTEGER}, #{uUsername,jdbcType=VARCHAR}, #{uName,jdbcType=VARCHAR}, 
+      #{uPassword,jdbcType=VARCHAR}, #{uEmail,jdbcType=VARCHAR}, #{uSex,jdbcType=INTEGER}, 
+      #{uHead,jdbcType=VARCHAR}, #{uSatement,jdbcType=VARCHAR}, #{uCreateTime,jdbcType=TIMESTAMP}, 
+      #{uUpdateTime,jdbcType=TIMESTAMP}, #{uPoint,jdbcType=INTEGER}, #{uIsModerator,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.codebbs.pojo.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uUsername != null">
+        u_username,
+      </if>
+      <if test="uName != null">
+        u_name,
+      </if>
+      <if test="uPassword != null">
+        u_password,
+      </if>
+      <if test="uEmail != null">
+        u_email,
+      </if>
+      <if test="uSex != null">
+        u_sex,
+      </if>
+      <if test="uHead != null">
+        u_head,
+      </if>
+      <if test="uSatement != null">
+        u_satement,
+      </if>
+      <if test="uCreateTime != null">
+        u_create_time,
+      </if>
+      <if test="uUpdateTime != null">
+        u_update_time,
+      </if>
+      <if test="uPoint != null">
+        u_point,
+      </if>
+      <if test="uIsModerator != null">
+        u_is_moderator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uUsername != null">
+        #{uUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uHead != null">
+        #{uHead,jdbcType=VARCHAR},
+      </if>
+      <if test="uSatement != null">
+        #{uSatement,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreateTime != null">
+        #{uCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uUpdateTime != null">
+        #{uUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uPoint != null">
+        #{uPoint,jdbcType=INTEGER},
+      </if>
+      <if test="uIsModerator != null">
+        #{uIsModerator,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.codebbs.pojo.User">
+    update user
+    <set>
+      <if test="uUsername != null">
+        u_username = #{uUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        u_email = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        u_sex = #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uHead != null">
+        u_head = #{uHead,jdbcType=VARCHAR},
+      </if>
+      <if test="uSatement != null">
+        u_satement = #{uSatement,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreateTime != null">
+        u_create_time = #{uCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uUpdateTime != null">
+        u_update_time = #{uUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uPoint != null">
+        u_point = #{uPoint,jdbcType=INTEGER},
+      </if>
+      <if test="uIsModerator != null">
+        u_is_moderator = #{uIsModerator,jdbcType=INTEGER},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.codebbs.pojo.User">
+    update user
+    set u_username = #{uUsername,jdbcType=VARCHAR},
+      u_name = #{uName,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_email = #{uEmail,jdbcType=VARCHAR},
+      u_sex = #{uSex,jdbcType=INTEGER},
+      u_head = #{uHead,jdbcType=VARCHAR},
+      u_satement = #{uSatement,jdbcType=VARCHAR},
+      u_create_time = #{uCreateTime,jdbcType=TIMESTAMP},
+      u_update_time = #{uUpdateTime,jdbcType=TIMESTAMP},
+      u_point = #{uPoint,jdbcType=INTEGER},
+      u_is_moderator = #{uIsModerator,jdbcType=INTEGER}
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.codebbs.pojo.User">
+    <constructor>
+      <idArg column="u_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="u_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_sex" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="u_head" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_satement" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="u_create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="u_update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="u_point" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="u_is_moderator" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    u_id, u_name, u_password, u_email, u_sex, u_head, u_satement, u_create_time, u_update_time, 
+    u_point, u_is_moderator
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.codebbs.pojo.User">
+    insert into user (u_id, u_name, u_password, 
+      u_email, u_sex, u_head, 
+      u_satement, u_create_time, u_update_time, 
+      u_point, u_is_moderator)
+    values (#{uId,jdbcType=INTEGER}, #{uName,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, 
+      #{uEmail,jdbcType=VARCHAR}, #{uSex,jdbcType=INTEGER}, #{uHead,jdbcType=VARCHAR}, 
+      #{uSatement,jdbcType=VARCHAR}, #{uCreateTime,jdbcType=TIMESTAMP}, #{uUpdateTime,jdbcType=TIMESTAMP}, 
+      #{uPoint,jdbcType=INTEGER}, #{uIsModerator,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.codebbs.pojo.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uName != null">
+        u_name,
+      </if>
+      <if test="uPassword != null">
+        u_password,
+      </if>
+      <if test="uEmail != null">
+        u_email,
+      </if>
+      <if test="uSex != null">
+        u_sex,
+      </if>
+      <if test="uHead != null">
+        u_head,
+      </if>
+      <if test="uSatement != null">
+        u_satement,
+      </if>
+      <if test="uCreateTime != null">
+        u_create_time,
+      </if>
+      <if test="uUpdateTime != null">
+        u_update_time,
+      </if>
+      <if test="uPoint != null">
+        u_point,
+      </if>
+      <if test="uIsModerator != null">
+        u_is_moderator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uHead != null">
+        #{uHead,jdbcType=VARCHAR},
+      </if>
+      <if test="uSatement != null">
+        #{uSatement,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreateTime != null">
+        #{uCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uUpdateTime != null">
+        #{uUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uPoint != null">
+        #{uPoint,jdbcType=INTEGER},
+      </if>
+      <if test="uIsModerator != null">
+        #{uIsModerator,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.codebbs.pojo.User">
+    update user
+    <set>
+      <if test="uName != null">
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        u_email = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        u_sex = #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uHead != null">
+        u_head = #{uHead,jdbcType=VARCHAR},
+      </if>
+      <if test="uSatement != null">
+        u_satement = #{uSatement,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreateTime != null">
+        u_create_time = #{uCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uUpdateTime != null">
+        u_update_time = #{uUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uPoint != null">
+        u_point = #{uPoint,jdbcType=INTEGER},
+      </if>
+      <if test="uIsModerator != null">
+        u_is_moderator = #{uIsModerator,jdbcType=INTEGER},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.codebbs.pojo.User">
+    update user
+    set u_name = #{uName,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_email = #{uEmail,jdbcType=VARCHAR},
+      u_sex = #{uSex,jdbcType=INTEGER},
+      u_head = #{uHead,jdbcType=VARCHAR},
+      u_satement = #{uSatement,jdbcType=VARCHAR},
+      u_create_time = #{uCreateTime,jdbcType=TIMESTAMP},
+      u_update_time = #{uUpdateTime,jdbcType=TIMESTAMP},
+      u_point = #{uPoint,jdbcType=INTEGER},
+      u_is_moderator = #{uIsModerator,jdbcType=INTEGER}
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+</mapper>
